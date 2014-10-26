@@ -494,8 +494,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -838,8 +836,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-132.26063537597656</real>
-							<real>-54.553810119628906</real>
+							<real>0.056122247129678726</real>
+							<real>-0.64698207378387451</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1582,9 +1580,9 @@
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
-			<real>6.6328125</real>
+			<real>0.39947915077209473</real>
 			<key>position</key>
-			<real>10</real>
+			<real>3.7666666507720947</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
