@@ -15,7 +15,13 @@
 {
     // put update code here
     timeSinceObstacle += delta;
-
+    
+    {
+        if (timeSinceObstacle >2.0f)
+            
+            timeSinceObstacle = 0.0f;
+        
+    }
 
 }
 
@@ -24,14 +30,7 @@
     //this will get called every time the player touches the screen
     [character flap];
     [self addObstacle];
-    timeSinceObstacle = 0.0f;
-    
-    {
-        if (timeSinceObstacle >2.0f)
-            
-            timeSinceObstacle = 0.0f;
-        
-    }
+    timeSinceObstacle = 1.0f;
 
     
 }
