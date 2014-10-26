@@ -19,7 +19,7 @@
 
 @property (nonatomic,readwrite) CGPoint ratio;
 @property (nonatomic,readwrite) CGPoint offset;
-@property (nonatomic,readwrite,unsafe_unretained) CCNode *chiild;
+@property (nonatomic,readwrite,unsafe_unretained) CCNode *child;
 +(id) pointWithCGPoint:(CGPoint)point offset:(CGPoint)offset;
 -(id) initWithCGPoint:(CGPoint)point offset:(CGPoint)offset;
 @end
@@ -211,26 +211,44 @@
         [obstacleToRemove removeFromParent];
         [_obstacles removeObject:obstacleToRemove];
     }
+    
+    _parallaxBackground.position = ccp(_parallaxBackground.position.x - (character.physicsBody.velocity.x *delta), _parallaxBackground.position.y);
+    
+    // loop the bushes
     for (CCNode *bush in _bushes) {
-        bush.position = ccp(bush.position.x -
-                            (character.physicsBody.velocity.x * delta), bush.position.y);
-        if (bush.position.x <= (-1 * bush.contentSize.width)){
-            bush.position = ccp(bush.position.x +
-                                2 * bush.contentSize.width, bush.position.y);
+        // get the world position of the bush
+        CGPoint bushWorldPosition = [_parallaxBackground convertToWorldSpace:bush.position];
+        // get the screen position of the bush
+        CGPoint bushScreenPosition = [self convertToNodeSpace:bushWorldPosition];
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (bushScreenPosition.x <= (-1 * bush.contentSize.width)) {
+            for (CGPointObject *child in _parallaxBackground.parallaxArray) {
+                if (child.child == bush) {
+                    child.offset = ccp(child.offset.x + 2*bush.contentSize.width, child.offset.y);
+                }
+            }
         }
     }
     
-    for (CCNode *cloud in _clouds){
-        cloud.position = ccp(cloud.position.x -
-                             (character.physicsBody.velocity.x * delta), cloud.position.y);
-        if (cloud.position.x <= (-1 * cloud.contentSize.width)) {
-            cloud.position = ccp(cloud.position.x +
-                                 2 * cloud.contentSize.width, cloud.position.y);
-            
-        }
+    // loop the clouds
+    for (CCNode *cloud in _clouds) {
+        // get the world position of the cloud
+        CGPoint cloudWorldPosition = [_parallaxBackground convertToWorldSpace:cloud.position];
+        // get the screen position of the cloud
+        CGPoint cloudScreenPosition = [self convertToNodeSpace:cloudWorldPosition];
         
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (cloudScreenPosition.x <= (-1 * cloud.contentSize.width)) {
+            for (CGPointObject *child in _parallaxBackground.parallaxArray) {
+                if (child.child == cloud) {
+                    child.offset = ccp(child.offset.x + 2*cloud.contentSize.width, child.offset.y);
+                }
+            }
+        }
     }
-
     
     if (!_gameOver)
     {
