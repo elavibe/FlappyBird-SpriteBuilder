@@ -22,6 +22,8 @@
             
             timeSinceObstacle = 0.0f;
         
+        
+        
     }
 
 }
