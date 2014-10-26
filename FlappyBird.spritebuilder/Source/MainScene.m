@@ -13,6 +13,13 @@
     CCNode *_ground1;
     CCNode *_ground2;
     NSArray *_grounds;
+    CCNode *_cloud1;
+    CCNode *_cloud2;
+    NSArray *_clouds;
+    
+    CCNode *_bush1;
+    CCNode *_bush2;
+    NSArray *bushes;
     
     NSTimeInterval _sinceTouch;
     
@@ -32,13 +39,36 @@
     self.userInteractionEnabled = TRUE;
     
     _grounds = @[_ground1, _ground2];
+    _clouds = @[_cloud1, _cloud2];
+    bushes = @[_bush1, _bush2];
     
     for (CCNode *ground in _grounds) {
         // set collision txpe
         ground.physicsBody.collisionType = @"level";
         ground.zOrder = DrawingOrderGround;
+       
+        
+    for (CCNode *bush in bushes) {
+            bush.position = ccp(bush.position.x -
+                                (character.physicsBody.velocity.x * delta), bush.position.y);
+            if (bush.position.x <= (-1 * bush.contentSize.width)){
+                bush.position = ccp(bush.position.x +
+                                    2 * bush.contentSize.width, bush.position.y);
+            }
+        }
+        
+    for (CCNode *cloud in _clouds){
+            cloud.position = ccp(cloud.position.x -
+                                 (character.physicsBody.velocity.x * delta), cloud.position.y);
+            if (cloud.position.x <= (-1 * cloud.contentSize.width)) {
+                cloud.position = ccp(cloud.position.x +
+                                     2 * cloud.contentSize.width, cloud.position.y);
+                
+            }
+            
+        }
     }
-    
+
     // set this class as delegate
     physicsNode.collisionDelegate = self;
     
