@@ -82,8 +82,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>-30</real>
+							<real>-8.1677007675170898</real>
+							<real>-31.633541107177734</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -138,6 +138,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1580,9 +1582,9 @@
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
-			<real>0.39947915077209473</real>
+			<real>5.3828125</real>
 			<key>position</key>
-			<real>3.7666666507720947</real>
+			<real>5.5333333015441895</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
